@@ -84,6 +84,8 @@ def motor_sf94(psi_local, gradiente_nabla_sigma, u_operativa, u_residual, lambda
         return "[ALERTA] Inyectando negentropía. Ajustando topología local."
     else:
         return "[ESTABLE] Coherencia informacional sostenida."
+```
+
 
 
 
@@ -160,3 +162,7 @@ El horizonte de sucesos de GW150914 requirió obligatoriamente un mínimo de ~26
 
 ## Cómo Contribuir
 Invitamos a la comunidad de astrofísica computacional a realizar un *fork* de este repositorio y ejecutar análisis de residuos sobre todo el catálogo GWTC (Gravitational-Wave Transient Catalog), validando el límite $\Delta t \ge t_{transcode}$ en cada evento registrado.
+
+
+
+
