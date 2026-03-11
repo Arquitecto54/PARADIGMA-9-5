@@ -86,7 +86,7 @@ def motor_sf95(psi_local, gradiente_nabla_sigma, u_operativa, u_residual, lambda
 
 ```
 
-
+```
 
 
 # Paradigma 9.5: Postulado Falsable 01
