@@ -64,26 +64,26 @@ En un estado de $u_{\text{term}} \to 0$, la EDIU se estabiliza en $\Phi_{\text{T
 
 ---
 
-## **5. Anexo: Motor de Contra-Fase SF-94**
-Algoritmo conceptual para el mantenimiento de la coherencia en entornos de alta entropía.
-
-```python
-def motor_sf94(psi_local, gradiente_nabla_sigma, u_operativa, u_residual, lambda_vacio):
+def motor_sf95(psi_local, gradiente_nabla_sigma, u_operativa, u_residual, lambda_vacio):
     """
-    Simulación de anulación de cicatriz térmica basada en la EDIU.
+    Simulación de anulación de cicatriz térmica basada en la TDIU.
+    Versión blindada: Previene divisiones por cero y soporta escalas extremas.
     """
     h_bar = 1.0545718e-34
+    epsilon_seguridad = 1e-50 
     
-    # Balance térmico con margen de error de Landauer
-    denominador_termico = u_operativa + (u_residual * 0.6931)
+    # Balance térmico con margen de error de Landauer (ln 2 ≈ 0.6931)
+    denominador_termico = u_operativa + (u_residual * 0.6931) + epsilon_seguridad
     
     # Cálculo de la coherencia (Phi_TDIU)
-    phi_calculado = ((h_bar * psi_local * gradiente_nabla_sigma) / denominador_termico) - lambda_vacio
+    termino_activo = (h_bar * psi_local * gradiente_nabla_sigma) / denominador_termico
+    phi_calculado = termino_activo - lambda_vacio
     
     if phi_calculado < 0.99:
-        return "[ALERTA] Inyectando negentropía. Ajustando topología local."
+        return f"[ALERTA] Coherencia al {phi_calculado:.4e}. Inyectando negentropía. Ajustando topología local."
     else:
-        return "[ESTABLE] Coherencia informacional sostenida."
+        return f"[ESTABLE] Coherencia informacional sostenida al {phi_calculado:.4e}."
+
 ```
 
 
